@@ -1,0 +1,12 @@
+# Run hiveserver2
+cd apache-hive/bin
+hive --service hiveserver2
+./start-trino.sh
+./trino-cli --server localhost:8080 --user nngiaminh1812 --catalog hive --schema uses_of_credits
+# Beeline
+Beeline
+!connect jdbc:hive2://localhost:10000
+# Enter usename, use nngiaminh1812
+# Enter empty for password
+# Use uses_of_credits DATABASE
+USE uses_of_credits

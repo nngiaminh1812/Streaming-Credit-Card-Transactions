@@ -1,0 +1,44 @@
+CREATE DATABASE IF NOT EXISTS uses_of_credits;
+USE uses_of_credits;
+
+CREATE EXTERNAL TABLE uses_of_credits.credit_card_transactions (
+`User` INT,
+`Card` INT,
+`Time` STRING,
+`Amount` DOUBLE,
+`Use Chip` STRING,
+`Merchant Name` STRING,
+`Merchant City` STRING,
+`Merchant State` STRING,
+`Zip` DOUBLE,
+`MCC` INT,
+`Errors?` STRING,
+`Is Fraud?` STRING,
+`Date` STRING
+)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+WITH SERDEPROPERTIES (
+'separatorChar' = ',',
+'quoteChar' = '"',
+'escapeChar' = '\\'
+)
+STORED AS TEXTFILE
+LOCATION 'hdfs://localhost:9000/user/nngiaminh1812/hive/warehouse/uses_of_credits.db/credit_card_transactions'
+TBLPROPERTIES ("skip.header.line.count"="1")
+
+CREATE VIEW uses_of_credits.credit_card_transactions_typed AS
+                    SELECT
+                    ->   CAST("user" AS INTEGER) AS "user",
+                    ->   CAST("card" AS INTEGER) AS "card",
+                    ->   CAST("time" AS VARCHAR) AS "time",
+                    ->   CAST("amount" AS DOUBLE) AS "amount",
+                    ->   CAST("use chip" AS VARCHAR) AS "use chip",
+                    ->   CAST("merchant name" AS VARCHAR) AS "merchant name",
+                    ->   CAST("merchant city" AS VARCHAR) AS "merchant city",
+                    ->   CAST("merchant state" AS VARCHAR) AS "merchant state",
+                    ->   CAST("zip" AS DOUBLE) AS "zip",
+                    ->   CAST("mcc" AS INTEGER) AS "mcc",
+                    ->   CAST("errors?" AS VARCHAR) AS "errors?",
+                    ->   CAST("is fraud?" AS VARCHAR) AS "is fraud?",
+                    ->   CAST("date" AS VARCHAR) AS "date"
+                    -> FROM uses_of_credits.credit_card_transactions;

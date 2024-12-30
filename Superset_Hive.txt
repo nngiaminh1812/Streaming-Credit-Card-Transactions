@@ -1,0 +1,5 @@
+superset run -p 5000 --with-threads --reload --debugger
+hive://nngiaminh1812@localhost:10000/uses_of_credits?NOSASL
+trino://nngiaminh1812@localhost:8080/uses_of_credits
+hdfs dfs -rm /user/nngiaminh1812/hive/warehouse/uses_of_credits.db/credit_card_transactions/*.csv
+hdfs dfs -rmr /user/nngiaminh1812/hive/warehouse/uses_of_credits.db/credit_card_transactions/_spark_metadata
