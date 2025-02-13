@@ -2,6 +2,8 @@
 
 This project demonstrates a real-time data processing pipeline for credit card transactions using a combination of modern data engineering tools. The pipeline reads transaction data from a CSV file, processes it using Kafka and Spark Streaming, stores the processed data in HDFS, and makes it available for querying via Hive and Trino. Finally, Apache Superset is used for data visualization and dashboarding, with Airflow scheduling dataset refreshes.
 
+## Architect
+![Data Architect](img/DataArchitect.png)
 ## Overview
 
 The pipeline consists of the following components:
